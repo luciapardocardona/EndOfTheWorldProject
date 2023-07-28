@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public int jump = 10, vel = 8;
-
     PlayerMovement movementScript;
 
     void Awake()

@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 8f;
     [SerializeField] float jumpSpeed = 15f;
     PlayerScript playerScript;
+    BoxCollider2D myBoxCollider;
+
 
     SpriteRenderer sprite;
     Vector2 moveInput;
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        myBoxCollider = GetComponent<BoxCollider2D>();
 
         myRigidbody = GetComponent<Rigidbody2D>();
     }
@@ -51,13 +54,13 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
-        // LayerMask groundLayer = LayerMask.GetMask(LayerConstants.Ground);
-        //     if (value.isPressed && myBoxCollider.IsTouchingLayers(groundLayer))
-        //     {
-        //         myRigidbody.velocity += new Vector2(0f, jumpSpeed);
-        //         sound.PlayOneShot(soundJump);
-        //         myAnimator.SetTrigger(AnimationConstants.hasJump);
-        //     }
+        LayerMask groundLayer = LayerMask.GetMask(LayerConstants.Ground);
+        if (value.isPressed && myBoxCollider.IsTouchingLayers(groundLayer))
+        {
+            myRigidbody.velocity += new Vector2(0f, jumpSpeed);
+            // sound.PlayOneShot(soundJump);
+            // myAnimator.SetTrigger(AnimationConstants.hasJump);
+        }
     }
     void OnEscape(InputValue value)
     {
