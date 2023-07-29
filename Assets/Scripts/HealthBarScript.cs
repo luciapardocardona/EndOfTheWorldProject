@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour
@@ -35,18 +37,18 @@ public class HealthBarScript : MonoBehaviour
     {
         HealthValue = HealthBarSpeed;
         fillFraction = 1f;
+        HealthBarImage.fillAmount = fillFraction;
     }
 
     void UpdateHealthBar()
     {
         if(fillFraction <= 0)
         {
-            Debug.Log("HA MUERTO HOSTIAS");
+            this.Kill();
         }
-        else if (isOnDangerZone && fillFraction > 0) // SET 0 ON FINAL GAME
+        else if (isOnDangerZone && fillFraction > 0)
         {
             HealthValue -= Time.deltaTime;
-
         }
         else if (isOnSafeZone && fillFraction < 1)
         {
@@ -56,5 +58,29 @@ public class HealthBarScript : MonoBehaviour
         fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
 
         HealthBarImage.fillAmount = fillFraction;
+    }
+
+    void InstantKill()
+    {
+        while (fillFraction > 0)
+        {
+            HealthValue += Time.deltaTime * 7;
+            fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
+            HealthBarImage.fillAmount = fillFraction;
+        }
+
+        this.Kill();
+    }
+
+    void Kill()
+    {
+        isOnDangerZone = false;
+        isOnSafeZone = true;
+        Invoke(nameof(ReloadLevel), 2f);
+    }
+
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
