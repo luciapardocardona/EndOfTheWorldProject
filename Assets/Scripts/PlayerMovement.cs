@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 15f;
     PlayerScript playerScript;
     BoxCollider2D myBoxCollider;
+    GameManager gameManager;
 
 
     SpriteRenderer sprite;
@@ -21,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
         myBoxCollider = GetComponent<BoxCollider2D>();
 
         myRigidbody = GetComponent<Rigidbody2D>();
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -67,4 +71,11 @@ public class PlayerMovement : MonoBehaviour
         // SceneManager.LoadScene(SceneConstants.Menu);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "")
+        {
+            gameManager.HandleSceneTransition();
+        }
+    }
 }
