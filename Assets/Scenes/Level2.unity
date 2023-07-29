@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 295397346}
   - component: {fileID: 295397345}
   - component: {fileID: 295397347}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 1292239584}
   - component: {fileID: 1292239583}
   - component: {fileID: 1292239585}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 1726783896}
   - component: {fileID: 1726783895}
   - component: {fileID: 1726783897}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Platforms (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1726783894}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a79c2df6ccf9864bb63e89de0cb4c28, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 1893896741}
   - component: {fileID: 1893896740}
   - component: {fileID: 1893896742}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Platforms (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +945,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1893896739}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a79c2df6ccf9864bb63e89de0cb4c28, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -992,7 +992,7 @@ GameObject:
   - component: {fileID: 2002669102}
   - component: {fileID: 2002669101}
   - component: {fileID: 2002669103}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1000
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0.73905563, a: 0.5882353}
   m_FlipX: 0
