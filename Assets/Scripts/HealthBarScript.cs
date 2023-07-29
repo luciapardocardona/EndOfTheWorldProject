@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour
 {
@@ -17,7 +19,10 @@ public class HealthBarScript : MonoBehaviour
     bool isOnSafeZone = false;
 
     [SerializeField]
-    float fillFration;
+    float fillFraction = 1f;
+
+    [SerializeField]
+    Image HealthBarImage;
 
     float HealthValue;
     // Update is called once per frame
@@ -29,25 +34,27 @@ public class HealthBarScript : MonoBehaviour
     private void Awake()
     {
         HealthValue = HealthBarSpeed;
+        fillFraction = 1f;
     }
 
     void UpdateHealthBar()
     {
-        if(HealthValue <= 0)
+        if(fillFraction <= 0)
         {
-            // DIES
+            Debug.Log("HA MUERTO HOSTIAS");
         }
-
-
-        if (isOnDangerZone)
+        else if (isOnDangerZone && fillFraction > 0) // SET 0 ON FINAL GAME
         {
             HealthValue -= Time.deltaTime;
+
         }
-        else if (isOnSafeZone)
+        else if (isOnSafeZone && fillFraction < 1)
         {
             HealthValue += Time.deltaTime * 2;
         };
 
+        fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
 
+        HealthBarImage.fillAmount = fillFraction;
     }
 }
