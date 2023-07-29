@@ -42,6 +42,7 @@ public class HealthBarScript : MonoBehaviour
 
     public void ToggleDanger(bool danger)
     {
+        Debug.Log(danger);
         isOnDangerZone = danger;
         isOnSafeZone = !danger;
     }
