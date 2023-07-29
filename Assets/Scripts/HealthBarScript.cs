@@ -37,6 +37,7 @@ public class HealthBarScript : MonoBehaviour
     {
         HealthValue = HealthBarSpeed;
         fillFraction = 1f;
+        HealthBarImage.fillAmount = fillFraction;
     }
 
     void UpdateHealthBar()
@@ -45,10 +46,9 @@ public class HealthBarScript : MonoBehaviour
         {
             this.Kill();
         }
-        else if (isOnDangerZone && fillFraction > 0) // SET 0 ON FINAL GAME
+        else if (isOnDangerZone && fillFraction > 0)
         {
             HealthValue -= Time.deltaTime;
-
         }
         else if (isOnSafeZone && fillFraction < 1)
         {
