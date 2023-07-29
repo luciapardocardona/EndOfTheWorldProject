@@ -83,7 +83,7 @@ public class HealthBarScript : MonoBehaviour
     {
         isOnDangerZone = false;
         isOnSafeZone = true;
-        Invoke(nameof(ReloadLevel), 2f);
+        Invoke(nameof(ReloadLevel), 0.05f);
     }
 
     private void ReloadLevel()

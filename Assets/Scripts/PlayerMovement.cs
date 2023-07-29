@@ -58,4 +58,8 @@ public class PlayerMovement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneConstants.Menu);
     }
+    void OnInitiateMenu(InputValue value)
+    {
+        SceneManager.LoadScene(SceneConstants.Level1);
+    }
 }
