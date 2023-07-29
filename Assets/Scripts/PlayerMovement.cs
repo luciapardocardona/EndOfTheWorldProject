@@ -10,9 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 15f;
     PlayerScript playerScript;
     BoxCollider2D myBoxCollider;
-    GameManager gameManager;
-
-
     SpriteRenderer sprite;
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -20,20 +17,9 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
-
         myRigidbody = GetComponent<Rigidbody2D>();
-
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
 
     public void Run()
     {
@@ -42,20 +28,21 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.velocity = playerVelocity;
         // myAnimator.SetBool(AnimationConstants.Walk, playerHasHorizontalSpeed);
 
-
-        // if (myRigidbody.velocity.x > 0)
-        // {
-        //     sprite.flipX = false;
-        // }
-        // else if (myRigidbody.velocity.x < 0)
-        // {
-        //     sprite.flipX = true;
-        // }
+        if (myRigidbody.velocity.x > 0)
+        {
+            sprite.flipX = false;
+        }
+        else if (myRigidbody.velocity.x < 0)
+        {
+            sprite.flipX = true;
+        }
     }
+
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }
+
     void OnJump(InputValue value)
     {
         LayerMask groundLayer = LayerMask.GetMask(LayerConstants.Ground);
@@ -66,16 +53,9 @@ public class PlayerMovement : MonoBehaviour
             // myAnimator.SetTrigger(AnimationConstants.hasJump);
         }
     }
+
     void OnEscape(InputValue value)
     {
-        // SceneManager.LoadScene(SceneConstants.Menu);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == "")
-        {
-            gameManager.HandleSceneTransition();
-        }
+        SceneManager.LoadScene(SceneConstants.Menu);
     }
 }

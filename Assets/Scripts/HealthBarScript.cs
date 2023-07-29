@@ -15,10 +15,10 @@ public class HealthBarScript : MonoBehaviour
     float HealthBarRecovery = 10f;
 
     [SerializeField]
-    bool isOnDangerZone = false;
-    
+    public bool isOnDangerZone = false;
+
     [SerializeField]
-    bool isOnSafeZone = false;
+    public bool isOnSafeZone = false;
 
     [SerializeField]
     float fillFraction = 1f;
@@ -40,9 +40,15 @@ public class HealthBarScript : MonoBehaviour
         HealthBarImage.fillAmount = fillFraction;
     }
 
+    public void ToggleDanger(bool danger)
+    {
+        isOnDangerZone = danger;
+        isOnSafeZone = !danger;
+    }
+
     void UpdateHealthBar()
     {
-        if(fillFraction <= 0)
+        if (fillFraction <= 0)
         {
             this.Kill();
         }
@@ -60,11 +66,11 @@ public class HealthBarScript : MonoBehaviour
         HealthBarImage.fillAmount = fillFraction;
     }
 
-    void InstantKill()
+    public void InstantKill()
     {
         while (fillFraction > 0)
         {
-            HealthValue += Time.deltaTime * 7;
+            HealthValue -= Time.deltaTime * 2.5f;
             fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
             HealthBarImage.fillAmount = fillFraction;
         }
