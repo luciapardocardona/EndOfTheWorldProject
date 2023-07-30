@@ -17,9 +17,11 @@ public class PlayerMovement : MonoBehaviour
     AudioSource sound;
     [SerializeField] AudioClip[] jumpSounds;
     Animator myAnimator;
+    GameManager gameManager;
 
     void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -69,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnInitiateMenu(InputValue value)
     {
-        SceneManager.LoadScene(SceneConstants.Level1);
+        gameManager.HandleSceneTransition();
     }
 
     public void Dead()
