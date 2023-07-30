@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
         {
             SceneConstants.Menu => SceneConstants.Controles,
             SceneConstants.Controles => SceneConstants.Start,
-            SceneConstants.Start => SceneConstants.Level1,
+            SceneConstants.Start => SceneConstants.StartLevel1,
+            SceneConstants.StartLevel1 => SceneConstants.Level1,
             SceneConstants.Level1 => SceneConstants.Level1Level2,
             SceneConstants.Level1Level2 => SceneConstants.Level2,
             SceneConstants.Level2 => SceneConstants.Level2Level3,
