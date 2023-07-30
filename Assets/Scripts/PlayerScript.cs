@@ -22,7 +22,6 @@ public class PlayerScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
         switch (collision.tag)
         {
             case CollisionConstants.LevelEnd: gameManager.HandleSceneTransition(); break;

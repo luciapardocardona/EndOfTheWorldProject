@@ -30,7 +30,7 @@ public class HealthBarScript : MonoBehaviour
     [SerializeField]
     AudioClip[] deathSounds;
 
-    bool hasAlreadyDead;
+    public bool hasAlreadyDead;
 
     bool alfaDecerasing = false;
 
@@ -58,7 +58,6 @@ public class HealthBarScript : MonoBehaviour
 
     public void ToggleDanger(bool danger)
     {
-        Debug.Log(danger);
         isOnDangerZone = danger;
         isOnSafeZone = !danger;
     }
