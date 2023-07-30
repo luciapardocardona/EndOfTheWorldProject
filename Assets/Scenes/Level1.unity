@@ -4758,10 +4758,6 @@ PrefabInstance:
       propertyPath: jumpSounds.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: bb44c3e75199a6d40955d92f7b1c25b9, type: 3}
-    - target: {fileID: 2120000668499484331, guid: 2fd88da899dae5f40ae8a3cf8f77b098, type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2792531909256639667, guid: 2fd88da899dae5f40ae8a3cf8f77b098, type: 3}
       propertyPath: healthBarScript
       value: 

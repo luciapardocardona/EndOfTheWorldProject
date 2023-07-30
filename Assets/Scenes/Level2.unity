@@ -4154,6 +4154,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1597865272966443099, guid: 2fd88da899dae5f40ae8a3cf8f77b098, type: 3}
+      propertyPath: healthBarScript
+      value: 
+      objectReference: {fileID: 1598669311}
     - target: {fileID: 2792531909256639667, guid: 2fd88da899dae5f40ae8a3cf8f77b098, type: 3}
       propertyPath: healthBarScript
       value: 

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 45fa13bf235fb8c42976605efe78c52d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 8
   jumpSpeed: 20
+  healthBarScript: {fileID: 0}
   jumpSounds:
   - {fileID: 8300000, guid: c30186fade7858a40b1afcf7132d528d, type: 3}
   - {fileID: 8300000, guid: bb44c3e75199a6d40955d92f7b1c25b9, type: 3}

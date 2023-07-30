@@ -9137,6 +9137,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3491294070883217858, guid: 33d4556d4b1d7bb499b8d1a2ccd6e00c, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5816498213960606229, guid: 33d4556d4b1d7bb499b8d1a2ccd6e00c, type: 3}
       propertyPath: playerMovement
       value: 
@@ -10586,6 +10590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1597865272966443099, guid: 2fd88da899dae5f40ae8a3cf8f77b098, type: 3}
+      propertyPath: healthBarScript
+      value: 
+      objectReference: {fileID: 25264250}
     - target: {fileID: 2792531909256639667, guid: 2fd88da899dae5f40ae8a3cf8f77b098, type: 3}
       propertyPath: healthBarScript
       value: 

@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float runSpeed = 8f;
     [SerializeField] float jumpSpeed = 15f;
+    [SerializeField] HealthBarScript healthBarScript;
     PlayerScript playerScript;
     BoxCollider2D myBoxCollider;
     SpriteRenderer sprite;
@@ -45,18 +46,19 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
+        if (!healthBarScript.hasAlreadyDead)
+        {
+            moveInput = value.Get<Vector2>();
+        }
     }
 
     void OnJump(InputValue value)
     {
         LayerMask groundLayer = LayerMask.GetMask(LayerConstants.Ground);
-        if (value.isPressed && myBoxCollider.IsTouchingLayers(groundLayer))
+        if (value.isPressed && myBoxCollider.IsTouchingLayers(groundLayer) && !healthBarScript.hasAlreadyDead)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
             sound.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)]);
-            // myAnimator.SetTrigger(AnimationConstants.hasJump);
-            // sound.PlayOneShot(soundJump);
             myAnimator.SetTrigger(AnimationConstants.Jump);
         }
     }
@@ -72,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dead()
     {
-        Debug.Log("Sa morio");
         myAnimator.SetTrigger(AnimationConstants.Dead);
     }
 }
