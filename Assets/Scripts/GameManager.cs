@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
         this.currentScene = SceneManager.GetActiveScene();
         this.nextScene = currentScene.name switch
         {
-            SceneConstants.Menu => SceneConstants.Level1,
+            SceneConstants.Menu => SceneConstants.Start,
+            SceneConstants.Start => SceneConstants.Level1,
             SceneConstants.Level1 => SceneConstants.Level2,
             SceneConstants.Level2 => SceneConstants.Level3,
-            SceneConstants.Level3 => SceneConstants.Credits,
+            SceneConstants.Level3 => SceneConstants.End,
+            SceneConstants.End => SceneConstants.Credits,
             _ => SceneConstants.Menu
         };
 
