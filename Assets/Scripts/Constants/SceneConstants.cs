@@ -7,4 +7,7 @@ public class SceneConstants
     public const string Menu = "Menu";
     public const string Start = "Start";
     public const string End = "End";
+    public const string Controles = "Controles";
+    public const string Level1Level2 = "Level1Level2";
+    public const string Level2Level3 = "Level2Level3";
 }
