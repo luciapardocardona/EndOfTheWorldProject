@@ -28,7 +28,7 @@ public class HealthBarScript : MonoBehaviour
 
     float HealthValue;
 
-    // [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
     void Update()
     {
         UpdateHealthBar();
@@ -52,7 +52,7 @@ public class HealthBarScript : MonoBehaviour
     {
         if (fillFraction <= 0)
         {
-            // playerMovement.Dead();
+            playerMovement.Dead();
             this.Kill();
         }
         else if (isOnDangerZone && fillFraction > 0)
@@ -77,7 +77,7 @@ public class HealthBarScript : MonoBehaviour
             fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
             HealthBarImage.fillAmount = fillFraction;
         }
-        // playerMovement.Dead();
+        playerMovement.Dead();
 
         this.Kill();
     }
