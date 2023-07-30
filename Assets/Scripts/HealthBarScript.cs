@@ -22,13 +22,24 @@ public class HealthBarScript : MonoBehaviour
     [SerializeField]
     Image HealthBarImage;
 
+    [SerializeField]
+    Image HealthWarningImage;
+
     float HealthValue;
     // Update is called once per frame
     [SerializeField]
     AudioClip[] deathSounds;
 
+    bool hasAlreadyDead;
+
+    bool alfaDecerasing = false;
+
+    float alfaWarning = 0f;
+
     [SerializeField] PlayerMovement playerMovement;
     AudioSource sound;
+
+    Color colorMuerte;
     void Update()
     {
         UpdateHealthBar();
@@ -36,6 +47,9 @@ public class HealthBarScript : MonoBehaviour
 
     private void Awake()
     {
+        colorMuerte = HealthWarningImage.color;
+
+        hasAlreadyDead = false;
         HealthValue = HealthBarSpeed;
         fillFraction = 1f;
         HealthBarImage.fillAmount = fillFraction;
@@ -54,17 +68,24 @@ public class HealthBarScript : MonoBehaviour
         if (fillFraction <= 0)
         {
             playerMovement.Dead();
-            sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
+
+            if (!hasAlreadyDead)
+            {
+                sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
+            }
 
             this.Kill();
         }
         else if (isOnDangerZone && fillFraction > 0)
         {
+            DeadWarning();
             HealthValue -= Time.deltaTime;
         }
         else if (isOnSafeZone && fillFraction < 1)
         {
             HealthValue += Time.deltaTime * 2;
+
+            HealthWarningImage.color = new Color(colorMuerte.r, colorMuerte.g, colorMuerte.b, 0);
         };
 
         fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
@@ -80,14 +101,19 @@ public class HealthBarScript : MonoBehaviour
             fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
             HealthBarImage.fillAmount = fillFraction;
         }
-        playerMovement.Dead();
-        sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
 
+        playerMovement.Dead();
+
+        if (!hasAlreadyDead)
+        {
+            sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
+        }
         this.Kill();
     }
 
     void Kill()
     {
+        hasAlreadyDead = true;
         isOnDangerZone = false;
         isOnSafeZone = true;
         Invoke(nameof(ReloadLevel), 2f);
@@ -100,6 +126,20 @@ public class HealthBarScript : MonoBehaviour
 
     public void DeadWarning()
     {
+        HealthWarningImage.color = new Color(colorMuerte.r, colorMuerte.g, colorMuerte.b, alfaWarning);
 
+        if (alfaWarning < 0.3f && !alfaDecerasing)
+        {
+            alfaWarning += 0.01f;
+        }
+        else if (alfaWarning <= 0)
+        {
+            alfaDecerasing = false;
+        }
+        else
+        {
+            alfaWarning -= 0.01f;
+            alfaDecerasing = true;
+        }
     }
 }
