@@ -53,7 +53,7 @@ public class HealthBarScript : MonoBehaviour
         if (fillFraction <= 0)
         {
             sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
-
+  
             this.Kill();
         }
         else if (isOnDangerZone && fillFraction > 0)
