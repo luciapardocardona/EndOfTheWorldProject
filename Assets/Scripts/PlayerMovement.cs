@@ -13,12 +13,14 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer sprite;
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
+    Animator myAnimator;
 
     void Awake()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        myAnimator = GetComponent<Animator>();
     }
 
     public void Run()
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
         myRigidbody.velocity = playerVelocity;
-        // myAnimator.SetBool(AnimationConstants.Walk, playerHasHorizontalSpeed);
+        myAnimator.SetBool(AnimationConstants.Walk, playerHasHorizontalSpeed);
 
         if (myRigidbody.velocity.x > 0)
         {
@@ -50,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
             // sound.PlayOneShot(soundJump);
-            // myAnimator.SetTrigger(AnimationConstants.hasJump);
+            myAnimator.SetTrigger(AnimationConstants.Jump);
         }
     }
 
@@ -61,5 +63,11 @@ public class PlayerMovement : MonoBehaviour
     void OnInitiateMenu(InputValue value)
     {
         SceneManager.LoadScene(SceneConstants.Level1);
+    }
+
+    public void Dead()
+    {
+        Debug.Log("Sa morio");
+        myAnimator.SetTrigger(AnimationConstants.Dead);
     }
 }

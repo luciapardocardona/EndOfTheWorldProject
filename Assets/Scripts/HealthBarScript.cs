@@ -27,7 +27,8 @@ public class HealthBarScript : MonoBehaviour
     Image HealthBarImage;
 
     float HealthValue;
-    // Update is called once per frame
+
+    // [SerializeField] PlayerMovement playerMovement;
     void Update()
     {
         UpdateHealthBar();
@@ -51,6 +52,7 @@ public class HealthBarScript : MonoBehaviour
     {
         if (fillFraction <= 0)
         {
+            // playerMovement.Dead();
             this.Kill();
         }
         else if (isOnDangerZone && fillFraction > 0)
@@ -75,6 +77,7 @@ public class HealthBarScript : MonoBehaviour
             fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
             HealthBarImage.fillAmount = fillFraction;
         }
+        // playerMovement.Dead();
 
         this.Kill();
     }
@@ -83,11 +86,16 @@ public class HealthBarScript : MonoBehaviour
     {
         isOnDangerZone = false;
         isOnSafeZone = true;
-        Invoke(nameof(ReloadLevel), 0.05f);
+        Invoke(nameof(ReloadLevel), 2f);
     }
 
     private void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void DeadWarning()
+    {
+
     }
 }
