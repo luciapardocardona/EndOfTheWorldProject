@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +24,10 @@ public class HealthBarScript : MonoBehaviour
 
     float HealthValue;
     // Update is called once per frame
+    [SerializeField]
+    AudioClip[] deathSounds;
+
+    AudioSource sound;
     void Update()
     {
         UpdateHealthBar();
@@ -38,6 +38,7 @@ public class HealthBarScript : MonoBehaviour
         HealthValue = HealthBarSpeed;
         fillFraction = 1f;
         HealthBarImage.fillAmount = fillFraction;
+        sound = GetComponent<AudioSource>();
     }
 
     public void ToggleDanger(bool danger)
@@ -51,6 +52,8 @@ public class HealthBarScript : MonoBehaviour
     {
         if (fillFraction <= 0)
         {
+            sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
+
             this.Kill();
         }
         else if (isOnDangerZone && fillFraction > 0)
@@ -75,6 +78,7 @@ public class HealthBarScript : MonoBehaviour
             fillFraction = Mathf.Clamp01(HealthValue / HealthBarSpeed);
             HealthBarImage.fillAmount = fillFraction;
         }
+        sound.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
 
         this.Kill();
     }

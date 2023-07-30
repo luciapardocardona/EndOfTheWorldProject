@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 8832682418622843143}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -198,3 +198,8 @@ MonoBehaviour:
   isOnSafeZone: 0
   fillFraction: 1
   HealthBarImage: {fileID: 2039897775482285447}
+  deathSounds:
+  - {fileID: 8300000, guid: e0f3f3238ba2c0a4790b09da048d83a6, type: 3}
+  - {fileID: 8300000, guid: dd5ade2c1461c7942b261b1cdce3082e, type: 3}
+  - {fileID: 8300000, guid: 0bb3732f627dfc843a153054db0a4537, type: 3}
+  - {fileID: 8300000, guid: 974928650bfa5fc448f80a470c568d5b, type: 3}

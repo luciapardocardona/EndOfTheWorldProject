@@ -13,12 +13,15 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer sprite;
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
+    AudioSource sound;
+    [SerializeField] AudioClip[] jumpSounds;
 
     void Awake()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        sound = GetComponent<AudioSource>();
     }
 
     public void Run()
@@ -49,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed && myBoxCollider.IsTouchingLayers(groundLayer))
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
-            // sound.PlayOneShot(soundJump);
+            sound.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)]);
             // myAnimator.SetTrigger(AnimationConstants.hasJump);
         }
     }
